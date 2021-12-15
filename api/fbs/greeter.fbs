@@ -1,0 +1,25 @@
+namespace models;
+
+// The response message containing the greetings
+table HelloReply {
+  message:string;
+}
+
+// The request message containing the user's name.
+table HelloRequest {
+  name:string;
+}
+
+// The request message containing the user's name and num.
+table ManyHellosRequest {
+  name:string;
+  num_greetings:int;
+}
+
+// The greeting service definition.
+rpc_service Greeter {  
+  // Sends a greeting
+  SayHello(HelloRequest):HelloReply;
+  // Sends many greetings use stream
+  SayManyHellos(ManyHellosRequest):HelloReply (streaming: "server");
+}
